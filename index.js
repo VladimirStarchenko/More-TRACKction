@@ -129,3 +129,48 @@ employeeQuestions = () => {
     ])
     .then(newEmployee);
 };
+
+updateEmployee = () => {
+  db.query("SELECT * FROM employees ORDER BY first_name", (err, data) => {
+    const employees = data.map((employee) => {
+      console.log(data);
+      return {
+        name: employee.first_name + " " + employee.last_name,
+        value: employee.id,
+      };
+    });
+    db.query("SELECT * FROM roles ORDER BY title", (err, data) => {
+      const roles = data.map((role) => {
+        return {
+          name: role.title,
+          value: role.id,
+        };
+      });
+      inquirer
+        .prompt([
+          {
+            type: "list",
+            name: "update_employee",
+            message: "Which Employee would you like to update?",
+            choices: employees,
+          },
+          {
+            type: "list",
+            name: "update_role",
+            message: "What is your employee's new role?",
+            choices: roles,
+          },
+        ])
+        .then((res) => {
+          db.query(
+            "UPDATE employees SET role_id = ? WHERE id = ?",
+            [res.update_role, res.update_employee],
+            (err, data) => {
+              viewEmployees();
+            }
+          );
+        });
+      console.log(data);
+    });
+  });
+};
