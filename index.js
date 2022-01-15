@@ -236,3 +236,18 @@ VALUES
     viewDepartments();
   });
 }
+
+// handles the addition of a new role
+function newRole(roleQuestions) {
+  const sql = `INSERT INTO roles (title, salary, department_id)
+VALUES
+('${roleQuestions.role_title}', ${roleQuestions.role_salary}, ${roleQuestions.role_department});`;
+
+  db.query(sql, (err, res) => {
+    if (err) throw err;
+    console.log("\n");
+    console.log("ADD ROLE");
+    console.log("\n");
+    viewRoles();
+  });
+}
