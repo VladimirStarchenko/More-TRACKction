@@ -80,3 +80,25 @@ departmentQuestions = () => {
     ])
     .then(newDepartment);
 };
+
+roleQuestions = () => {
+  return inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "role_title",
+        message: "Which role would you like to add?",
+      },
+      {
+        type: "input",
+        name: "role_salary",
+        message: "What is the salary of this role?",
+      },
+      {
+        type: "input",
+        name: "role_department",
+        message: "What is the roles department_id?",
+      },
+    ])
+    .then(newRole);
+};
