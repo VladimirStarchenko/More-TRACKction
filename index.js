@@ -188,3 +188,19 @@ function viewDepartments() {
     tableCreation();
   });
 }
+
+function viewRoles() {
+  const sql = `SELECT roles.*,
+    departments.department_name AS department_name
+    FROM roles
+    LEFT JOIN departments ON roles.department_id = departments.id;`;
+
+  db.query(sql, (err, res) => {
+    if (err) throw err;
+    console.log("\n");
+    console.log("VIEW ALL ROLES");
+    console.log("\n");
+    console.table(res);
+    tableCreation();
+  });
+}
