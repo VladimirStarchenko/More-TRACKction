@@ -102,3 +102,30 @@ roleQuestions = () => {
     ])
     .then(newRole);
 };
+
+employeeQuestions = () => {
+  return inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "employee_first",
+        message: "What is your employee's first name?",
+      },
+      {
+        type: "input",
+        name: "employee_last",
+        message: "What is your employee's last name?",
+      },
+      {
+        type: "input",
+        name: "employee_role",
+        message: "What is your employee's role id?",
+      },
+      {
+        type: "input",
+        name: "employee_manager",
+        message: "What is your employee's manager id?",
+      },
+    ])
+    .then(newEmployee);
+};
