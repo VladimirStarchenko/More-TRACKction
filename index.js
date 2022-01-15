@@ -174,3 +174,17 @@ updateEmployee = () => {
     });
   });
 };
+
+// these functions will handle the view (table) responses, converting node responses to the below sql syntax
+function viewDepartments() {
+  const sql = `SELECT * FROM departments`;
+
+  db.query(sql, (err, res) => {
+    if (err) throw err;
+    console.log("\n");
+    console.log("VIEW ALL DEPARTMENTS");
+    console.log("\n");
+    console.table(res);
+    tableCreation();
+  });
+}
