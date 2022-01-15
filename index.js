@@ -251,3 +251,18 @@ VALUES
     viewRoles();
   });
 }
+
+// handles the addition of a new employee
+function newEmployee(employeeQuestions) {
+  const sql = `INSERT INTO employees (first_name, last_name, role_id, manager_id)
+VALUES
+('${employeeQuestions.employee_first}', '${employeeQuestions.employee_last}', '${employeeQuestions.employee_role}', '${employeeQuestions.employee_manager}');`;
+
+  db.query(sql, (err, res) => {
+    if (err) throw err;
+    console.log("\n");
+    console.log("ADD EMPLOYEE");
+    console.log("\n");
+    viewEmployees();
+  });
+}
