@@ -221,3 +221,18 @@ INNER JOIN roles ON employees.role_id = roles.id;`;
     tableCreation();
   });
 }
+
+// handles the addition of a new departmen
+function newDepartment(departmentQuestions) {
+  const sql = `INSERT INTO departments (department_name)
+VALUES
+('${departmentQuestions.department_name}');`;
+
+  db.query(sql, (err, res) => {
+    if (err) throw err;
+    console.log("\n");
+    console.log("ADD DEPARTMENT");
+    console.log("\n");
+    viewDepartments();
+  });
+}
