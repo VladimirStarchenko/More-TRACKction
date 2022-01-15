@@ -68,3 +68,15 @@ tableCreation = () => {
       }
     });
 };
+
+departmentQuestions = () => {
+  return inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "department_name",
+        message: "What is the name of the department you would like to add?",
+      },
+    ])
+    .then(newDepartment);
+};
